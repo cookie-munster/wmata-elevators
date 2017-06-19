@@ -9,6 +9,8 @@
   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
   crossorigin=""></script>
   <script src="https://raw.github.com/calvinmetcalf/leaflet-ajax/gh-pages/dist/leaflet.ajax.min.js"></script>
+  <script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.js"></script>
 
   <style>
     body { padding: 0; margin: 0; } html, body, #map { height: 100vh; width: 100vw; }
@@ -28,9 +30,10 @@
       layer.bindPopup(feaure.properties.Name);
     }
 
-    var elevators = new L.geoJSON.AJAX("./elevators.json", {
-      {onEachFeature:popUp}
-    }).addTo(map);
+    var url = "./elevators.json"
+      d3.json(url, function(err, data) {
+        L.geoJson(data).addTo(map)
+    })
 
     function onLocationFound(e) {
         var radius = e.accuracy / 2;
