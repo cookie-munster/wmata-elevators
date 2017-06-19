@@ -9,7 +9,7 @@
   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
   crossorigin=""></script>
   <script src="https://raw.github.com/calvinmetcalf/leaflet-ajax/gh-pages/dist/leaflet.ajax.min.js"></script>
-  <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
   <style>
     body { padding: 0; margin: 0; } html, body, #map { height: 100vh; width: 100vw; }
   </style>
@@ -24,11 +24,12 @@
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    $.getJSON("./elevators.json", function(data) {
-      var geojson = L.geoJson(data, {
-        onEachFeature: function (feature, layer) {
-          layer.bindPopup(feature.properties.Name);
-        }
+    function popUp(feature, layer) {
+      layer.bindPopup(feaure.properties.Name);
+    }
+
+    var elevators = new L.geoJSON.AJAX("./elevators.json", {
+      {onEachFeature:popUp}
     }).addTo(map);
 
     function onLocationFound(e) {
@@ -44,10 +45,10 @@
         alert(e.message);
     }
 
-//    map.on('locationfound', onLocationFound)
-//    map.on('locationerror',onLocationError)
+    map.on('locationfound', onLocationFound)
+    map.on('locationerror',onLocationError)
 
-//    map.locate({setView: true, maxZoom: 16});
+    map.locate({setView: true, maxZoom: 16});
 
 
   </script>
