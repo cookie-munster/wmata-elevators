@@ -21,13 +21,9 @@
       layer.bindPopup(feaure.properties.Name);
     }
 
-    var url = "./elevators2.geojson"
-      d3.json(url, function(err, data) {
-        L.mapbox.featureLayer(data, {
-          onEachFeature: popUp
-        }).addTo(map)
-    })
-
+    var elevators = L.mapbox.featureLayer().addTo(map);
+    featureLayer.loadURL('/elevators2.geojson');
+    
     function onLocationFound(e) {
         var radius = e.accuracy / 2;
 
