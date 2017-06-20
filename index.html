@@ -23,7 +23,7 @@
     }
 
     var elevators = L.mapbox.featureLayer().addTo(map);
-    elevators.loadURL('./elevators2.geojson');
+    elevators.loadURL('./elevators.geojson');
 
     function onLocationFound(e) {
         var radius = e.accuracy / 2;
