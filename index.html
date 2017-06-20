@@ -2,14 +2,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
-  integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
-  crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
-  integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
-  crossorigin=""></script>
-  <script src="https://raw.github.com/calvinmetcalf/leaflet-ajax/gh-pages/dist/leaflet.ajax.min.js"></script>
-  <script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
+  <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.js"></script>
 
   <style>
@@ -20,16 +14,8 @@
 <body>
   <div id="map"></div>
   <script>
-    var map = L.map('map').setView([38.8947, -77.0363], 12);
-
-
-
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 22,
-        id: 'your.mapbox.project.id',
-        accessToken: 'pk.eyJ1IjoiYmxvb2ZlciIsImEiOiJjaW9hc2JzcjIwM25sdmlranY4dmV4ZTJiIn0.jC_kirEMwELyv0EoFmJv4Q'
-    }).addTo(map);
+    L.mapbox.accessToken = 'pk.eyJ1IjoiYmxvb2ZlciIsImEiOiJjaW9hc2JzcjIwM25sdmlranY4dmV4ZTJiIn0.jC_kirEMwELyv0EoFmJv4Q';
+    var map = L.mapbox.map('map','mapbox.streets').setView([38.8947, -77.0363], 12);
 
     function popUp(feature, layer) {
       layer.bindPopup(feaure.properties.Name);
