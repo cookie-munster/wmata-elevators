@@ -79,12 +79,6 @@
       geolocate.parentNode.removeChild(geolocate);
   });
 
-  // If the user chooses not to allow their location
-  // to be shared, display an error message.
-  map.on('locationerror', function() {
-      geolocate.innerHTML = 'Position could not be found';
-  });
-
     var elevators = L.mapbox.featureLayer().addTo(map);
     elevators.loadURL('./elevators2.geojson');
 
